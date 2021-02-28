@@ -1,2 +1,2 @@
-# rust-repository-template
-Simple template for Rust Repository.
+# About
+Simple template for Rust repository.
