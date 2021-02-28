@@ -3,15 +3,15 @@ mod application;
 /// アプリケーションのエントリーポイント
 fn main() {
 	// アプリケーションのインスタンスを初期化します。
-	let app = application::Application::new();
+	let result = application::Application::new();
 	if app.is_err() {
-		println!("[ERROR] {}", app.err().unwrap());
+		println!("[ERROR] {}", result.err().unwrap());
 		return;
 	}
-	let app = app.unwrap();
+	let application = result.unwrap();
 
 	// アプリケーションを実行します。
-	let result = app.run();
+	let result = application.run();
 	if result.is_err() {
 		println!("[ERROR] {}", result.err().unwrap());
 		return;
