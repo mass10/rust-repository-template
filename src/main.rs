@@ -1,14 +1,24 @@
 mod application;
+mod application_error;
+mod configuration;
 
 /// アプリケーションのエントリーポイント
 fn main() {
-	// アプリケーションのインスタンスを初期化します。
-	let app = application::Application::new();
-	if app.is_err() {
-		println!("[ERROR] {}", app.err().unwrap());
+	// コンフィギュレーション
+	let result = configuration::ConfigurationSettings::configure();
+	if result.is_err() {
+		println!("[ERROR] {}", result.err().unwrap());
 		return;
 	}
-	let app = app.unwrap();
+	let _conf = result.unwrap();
+
+	// アプリケーションのインスタンスを初期化します。
+	let result = application::Application::new();
+	if result.is_err() {
+		println!("[ERROR] {}", result.err().unwrap());
+		return;
+	}
+	let app = result.unwrap();
 
 	// アプリケーションを実行します。
 	let result = app.run();
