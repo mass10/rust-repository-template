@@ -4,7 +4,7 @@ mod application;
 fn main() {
 	// アプリケーションのインスタンスを初期化します。
 	let result = application::Application::new();
-	if app.is_err() {
+	if result.is_err() {
 		println!("[ERROR] {}", result.err().unwrap());
 		return;
 	}
